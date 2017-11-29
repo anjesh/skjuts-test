@@ -8,5 +8,4 @@ from trips import createTrip
 
 
 # temporary implementation; will be focused on workflows
-login()
 createTrip()
