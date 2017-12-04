@@ -21,16 +21,26 @@ def login():
     )
 
 
-# def register():
-#     # authHeaders = {'Content-Type': 'application/json', 'Authorization': os.environ.get('token')}
-#     query = """
-#         mutation {
-#             register(email: \"sbs1@sbs.com\") {token}
-#         }
-#     """
+def register():
+    query = """
+        mutation {
+            register(email: \"sachit.singh@yipl.com.np\") {token}
+        }
+    """
 
-#     print query
+    print query
 
+    respond(requests.post(os.environ.get('url'), json = {'query': query}, headers = headers),
+        inspect.currentframe().f_code.co_name)
 
-#     respond(requests.post(os.environ.get('url'), json = {'query': query}, headers = headers),
-#         inspect.currentframe().f_code.co_name)
+def verifyCode():
+    headers.update({'Authorization': os.environ.get('token')})
+
+    query = """
+        mutation {
+            verifyCode(code: \"47308\") { status message User { firstName lastName email } }
+        }
+    """
+
+    respond(requests.post(os.environ.get('url'), json = {'query': query}, headers = headers),
+        inspect.currentframe().f_code.co_name)
